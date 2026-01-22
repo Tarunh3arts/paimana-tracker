@@ -42,5 +42,49 @@
     "status": "Delayed",
     "latitude": 17.385,
     "longitude": 78.4867
+  },
+  {
+    "project_id": 617321,
+    "project_name": "Godhani-Kalumna Chord 13.7 KM",
+    "sector": "Transport",
+    "budget": 150000,
+    "actual_cost": 150000,
+    "progress": 11,
+    "status": "Delayed",
+    "latitude": 21.1458,
+    "longitude": 79.0882
+  },
+  {
+    "project_id": 705728,
+    "project_name": "Mumbai-Ahmedabad High Speed Rail Project",
+    "sector": "Transport",
+    "budget": 108000,
+    "actual_cost": 108000,
+    "progress": 55,
+    "status": "Delayed",
+    "latitude": 19.076,
+    "longitude": 72.8777
+  },
+  {
+    "project_id": 701372,
+    "project_name": "Sardar Sarovar Project",
+    "sector": "Water",
+    "budget": 20718,
+    "actual_cost": 33413,
+    "progress": 93,
+    "status": "Near Completion",
+    "latitude": 21.8197,
+    "longitude": 73.7191
+  },
+  {
+    "project_id": 900101,
+    "project_name": "Irrigation Canal Project",
+    "sector": "Irrigation",
+    "budget": 80000,
+    "actual_cost": 76000,
+    "progress": 90,
+    "status": "On Track",
+    "latitude": 17.9689,
+    "longitude": 79.5941
   }
 ]
