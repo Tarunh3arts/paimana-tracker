@@ -1,0 +1,69 @@
+You are helping me set up and run a frontend project called
+“PAIMANA Infrastructure Project Tracker”.
+
+PROJECT OVERVIEW:
+This is a frontend-only MVP built with Next.js (React) that visualizes
+major Indian infrastructure projects using mock data derived from
+PAIMANA (MoSPI) reports.
+
+The app currently:
+- Displays a searchable table of projects
+- Shows a bar chart of most delayed projects
+- Renders an interactive map with project markers
+- Uses mock data stored locally (no backend yet)
+
+TECH STACK:
+- Node.js (v18+)
+- Next.js (App Router)
+- React
+- Tailwind CSS
+- Recharts (charts)
+- Leaflet + React-Leaflet (maps)
+
+PROJECT STRUCTURE (IMPORTANT):
+The repository root contains:
+- package.json
+- package-lock.json
+- next.config.*
+- src/
+
+Inside src/:
+- src/app/page.jsx → main dashboard page
+- src/components/ → React components
+  - ProjectTable.jsx
+  - DelayChart.jsx
+  - ProjectMap.jsx
+  - ProjectMapInner.jsx
+- src/data/projects.json → mock project data
+
+NOTE:
+- There must be ONLY ONE app folder inside src/app
+- If a root-level app/ folder exists, it should be deleted
+- node_modules is NOT committed and must be installed locally
+
+GOAL:
+Explain and execute the exact steps required to run this project
+on a completely fresh device (Windows/Mac/Linux).
+
+WHAT YOU MUST PROVIDE:
+1. Prerequisites to install (Node.js, npm)
+2. Exact terminal commands in order to:
+   - Clone the repo
+   - Install dependencies
+   - Run the dev server
+3. How to verify the app is running correctly
+4. Common issues and fixes:
+   - Port 3000 already in use
+   - "window is not defined" (React-Leaflet SSR issue)
+   - Seeing the default Next.js page instead of the app
+5. Clear instructions, no assumptions, beginner-safe
+
+DO NOT:
+- Add a backend
+- Add Python or requirements.txt
+- Change project structure
+- Introduce Docker or advanced tooling
+
+OUTPUT FORMAT:
+Step-by-step numbered instructions with code blocks where needed.
+Keep it concise, practical, and correct.
