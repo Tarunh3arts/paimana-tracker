@@ -1,0 +1,11 @@
+body {
+  background: linear-gradient(180deg, #0b1220, #111827);
+  color: white;
+}
+
+.card-hover {
+  transition: transform 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-5px);
+}
