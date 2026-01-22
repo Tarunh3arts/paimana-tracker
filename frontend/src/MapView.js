@@ -1,5 +1,4 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import MarkerClusterGroup from "react-leaflet-cluster";
 import { useEffect, useState } from "react";
 import api from "./api";
 import L from "leaflet";
@@ -11,24 +10,23 @@ L.Icon.Default.mergeOptions({
 });
 
 function MapView() {
-  const [markers, setMarkers] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    api.get("/map/markers").then(res => setMarkers(res.data));
+    api.get("/projects").then(res => setData(res.data));
   }, []);
 
   return (
-    <MapContainer center={[20.59, 78.96]} zoom={5} style={{ height: "500px" }}>
+    <MapContainer center={[20.59,78.96]} zoom={5} style={{height:"500px"}}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      <MarkerClusterGroup>
-        {markers.map(m => (
-          <Marker key={m.project_id} position={[m.lat, m.lng]}>
-            <Popup>
-              <b>{m.name}</b><br />{m.status}
-            </Popup>
-          </Marker>
-        ))}
-      </MarkerClusterGroup>
+      {data.map(p => (
+        <Marker key={p.project_id} position={[p.latitude, p.longitude]}>
+          <Popup>
+            <b>{p.project_name}</b><br/>
+            {p.status}
+          </Popup>
+        </Marker>
+      ))}
     </MapContainer>
   );
 }

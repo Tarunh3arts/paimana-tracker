@@ -3,61 +3,44 @@
     "project_id": 617321,
     "project_name": "Godhani-Kalumna Chord 13.7 KM",
     "sector": "Transport",
-    "original_cost": 150000,
-    "revised_cost": 150000,
-    "expenditure": 1940,
+    "budget": 150000,
+    "actual_cost": 150000,
     "progress": 11,
-    "status": "Delayed"
+    "status": "Delayed",
+    "latitude": 21.1458,
+    "longitude": 79.0882
   },
   {
     "project_id": 705728,
     "project_name": "Mumbai-Ahmedabad High Speed Rail Project",
     "sector": "Transport",
-    "original_cost": 108000,
-    "revised_cost": 108000,
-    "expenditure": 82968,
+    "budget": 108000,
+    "actual_cost": 108000,
     "progress": 55,
-    "status": "Delayed"
-  },
-  {
-    "project_id": 706268,
-    "project_name": "Chennai Metro Rail Phase-II",
-    "sector": "Transport",
-    "original_cost": 63246,
-    "revised_cost": 28779,
-    "expenditure": 4747,
-    "progress": 70,
-    "status": "Delayed"
-  },
-  {
-    "project_id": 709798,
-    "project_name": "Ethylene Cracker Project at Bina Refinery",
-    "sector": "Energy",
-    "original_cost": 43367,
-    "revised_cost": 43367,
-    "expenditure": 1955,
-    "progress": 16,
-    "status": "Delayed"
+    "status": "Delayed",
+    "latitude": 19.076,
+    "longitude": 72.8777
   },
   {
     "project_id": 701372,
     "project_name": "Sardar Sarovar Project",
     "sector": "Water",
-    "original_cost": 20718,
-    "revised_cost": 33413,
-    "expenditure": 31861,
+    "budget": 20718,
+    "actual_cost": 33413,
     "progress": 93,
-    "status": "Near Completion"
+    "status": "Near Completion",
+    "latitude": 21.8197,
+    "longitude": 73.7191
   },
   {
-    "project_id": 706775,
-    "project_name": "BharatNet",
-    "sector": "Telecom",
-    "original_cost": 61109,
-    "revised_cost": 188000,
-    "expenditure": 46432,
-    "progress": 81,
-    "status": "Delayed"
+    "project_id": 1,
+    "project_name": "NH Road Expansion Phase 2",
+    "sector": "Roads",
+    "budget": 120000000,
+    "actual_cost": 145000000,
+    "progress": 65,
+    "status": "Delayed",
+    "latitude": 17.385,
+    "longitude": 78.4867
   }
 ]
-

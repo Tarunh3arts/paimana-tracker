@@ -1,69 +1,56 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from data_loader import load_data
-from analytics import sector_stats,risk_score
+import json
 
-app=FastAPI()
+app = FastAPI()
 
-# Enable CORS for local frontend development
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-    ],
-    allow_credentials=False,
+    allow_origins=["http://localhost:3000"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-@app.get("/")
-def root():
-    return {"status":"API running"}
+def load_data():
+    with open("paimana_data.json") as f:
+        return json.load(f)
 
 @app.get("/projects")
-def projects():
+def get_projects():
     return load_data()
 
-@app.get("/analytics/sector-progress")
-def sector_progress():
-    return sector_stats(load_data())
-
 @app.get("/analytics/summary")
-def summary():
-    data=load_data()
+def analytics():
+    data = load_data()
+    delayed = [p for p in data if p["status"] == "Delayed"]
+    cost_overrun = [p for p in data if p["actual_cost"] > p["budget"]]
+
+    sector_progress = {}
+    for p in data:
+        sector_progress.setdefault(p["sector"], []).append(p["progress"])
+
     return {
-        "total":len(data),
-        "delayed":len([p for p in data if p["progress"]<80]),
-        "high_risk":len([p for p in data if risk_score(p)>60])
+        "total_projects": len(data),
+        "delayed_projects": len(delayed),
+        "cost_overrun_projects": len(cost_overrun),
+        "sector_progress": {
+            k: sum(v) / len(v) for k, v in sector_progress.items()
+        }
     }
 
 @app.get("/chat")
-def chat(query:str):
-    data=load_data()
-    q=query.lower()
+def chat(q: str):
+    data = load_data()
+    q = q.lower()
 
     if "delayed" in q:
-        return [p for p in data if p["progress"]<80]
+        return [p["project_name"] for p in data if p["status"] == "Delayed"]
 
-    if "risk" in q:
-        return [{**p,"risk":risk_score(p)} for p in data if risk_score(p)>60]
+    if "cost overrun" in q:
+        return [p["project_name"] for p in data if p["actual_cost"] > p["budget"]]
 
-    if "sector" in q:
-        return sector_stats(data)
+    for p in data:
+        if p["project_name"].lower() in q:
+            return p
 
-    return {"message":"Try delayed, risk, sector"}
-
-@app.get("/map/markers")
-def map_markers():
-    data = load_data()
-    return [
-        {
-            "project_id": p["project_id"],
-            "name": p["project_name"],
-            "lat": 17.385,      # demo coords (replace later)
-            "lng": 78.4867,
-            "status": p["status"]
-        }
-        for p in data
-    ]
+    return {"message": "Try: delayed projects, cost overrun projects, or project name"}
