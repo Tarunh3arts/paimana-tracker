@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import api from "./api";
 import L from "leaflet";
 
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+const customIcon = new L.Icon({
+  iconUrl: "/pin.png",
+  iconSize: [30, 30],
+  iconAnchor: [15, 30],
 });
+
 
 function MapView() {
   const [data, setData] = useState([]);
@@ -20,7 +21,7 @@ function MapView() {
     <MapContainer center={[20.59,78.96]} zoom={5} style={{height:"500px"}}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {data.map(p => (
-        <Marker key={p.project_id} position={[p.latitude, p.longitude]}>
+        <Marker key={p.project_id} icon={customIcon} position={[p.latitude, p.longitude]}>
           <Popup>
             <b>{p.project_name}</b><br/>
             {p.status}
