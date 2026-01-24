@@ -15,6 +15,32 @@ def load_data():
     with open("paimana_data.json") as f:
         return json.load(f)
 
+from fastapi import UploadFile, File
+import uuid, json
+from report_extractor import extract_text, extract_project_fields
+
+@app.post("/upload-report")
+async def upload_report(file: UploadFile = File(...)):
+    file_id = f"uploads/{uuid.uuid4()}_{file.filename}"
+    with open(file_id, "wb") as f:
+        f.write(await file.read())
+
+    text = extract_text(file_id)
+    project_data = extract_project_fields(text)
+
+    # Save to dataset (demo DB)
+    with open("paimana_data.json", "r+") as f:
+        data = json.load(f)
+        project_data["project_id"] = len(data) + 1000
+        data.append(project_data)
+        f.seek(0)
+        json.dump(data, f, indent=2)
+
+    return {
+        "message": "Report processed successfully",
+        "project": project_data
+    }
+
 @app.get("/projects")
 def get_projects():
     return load_data()

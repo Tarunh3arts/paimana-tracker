@@ -1,23 +1,15 @@
 import { useState } from "react";
-import Navbar from "./Navbar";
 import ProjectCards from "./ProjectCards";
-import MapView from "./MapView";
-import SectorChart from "./SectorChart";
-import ChatUI from "./ChatUI";
+import ReportUpload from "./ReportUpload";
 
 function Dashboard() {
-  const [tab, setTab] = useState("dashboard");
+  const [reload, setReload] = useState(false);
 
   return (
-    <>
-      <Navbar setTab={setTab} />
-      <div className="container">
-        {tab==="dashboard" && <ProjectCards />}
-        {tab==="map" && <MapView />}
-        {tab==="analytics" && <SectorChart />}
-        {tab==="chat" && <ChatUI />}
-      </div>
-    </>
+    <div className="container mt-4">
+      <ReportUpload refresh={() => setReload(!reload)} />
+      <ProjectCards key={reload} />
+    </div>
   );
 }
 

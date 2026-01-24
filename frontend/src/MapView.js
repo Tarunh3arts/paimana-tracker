@@ -4,7 +4,7 @@ import api from "./api";
 import L from "leaflet";
 
 const customIcon = new L.Icon({
-  iconUrl: "/pin.png",
+  iconUrl: "/image.png",
   iconSize: [30, 30],
   iconAnchor: [15, 30],
 });
